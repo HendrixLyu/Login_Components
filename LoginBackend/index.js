@@ -1,0 +1,20 @@
+import express from 'express';
+import cors from 'cors';
+import 'dotenv/config'
+import bodyParser from 'body-parser';
+import { register } from './src/api/register.js'; //必须加.js
+import { user } from './src/api/user.js';
+
+const app = express()
+const jsonParser = bodyParser.json() 
+
+app.use(cors())
+
+app.post('/api/register', jsonParser, register)
+app.post('/api/user', jsonParser, user)
+
+const Port = process.env.PORT || 9090
+
+app.listen(Port, () => {
+    console.log(`success!!!  http://localhost:${Port}`)
+})
