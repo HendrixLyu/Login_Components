@@ -103,7 +103,8 @@ async function register(event) {
     BtnErrorShow();
     return;
   } //看这三个DOM节点是否为空, 有空值就return,不继续执行AXIOS
-  if (password_one.value === password_two.value) { //密码输入符合条件
+  if (password_one.value === password_two.value) {
+    //密码输入符合条件
     //在前端直接比较<input>标签的value
     const address = "http://localhost:7890/api/register"; //后端的路由
     // const method = fetchMethod.FETCH //切换方法1.Fetch
@@ -169,7 +170,8 @@ async function postPassword(method, address, username, password) {
     //方法2:
     case fetchMethod.AXIOS:
       return axios
-        .post("http://localhost:7890/api/register", { //将数据发给后端路由
+        .post("http://localhost:7890/api/register", {
+          //将数据发给后端路由
           username,
           password,
         })
@@ -215,7 +217,9 @@ async function login(e) {
     .then(res => res.data) //异步等后端返回的res.data,再赋值给response
     .catch(err => console.errors(err));
   console.log(response);
-  switch (Number(response.code)) { //切换后端返回的code码
+  switch (
+    Number(response.code) //切换后端返回的code码
+  ) {
     case 0:
       correctShow();
       showWelcome(); //跳转welcome
