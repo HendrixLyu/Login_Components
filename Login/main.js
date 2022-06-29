@@ -14,7 +14,7 @@ const ACTIVE = "active";
 const ERROR = "error"; //宏
 
 const loginBtn = document.querySelector(".login-btn");
-const registerBtn = document.querySelector(".register-btn"); //按钮
+const registerBtn = document.querySelector(".register-btn"); //在DOM找到按钮
 
 loginBtn.addEventListener("click", login);
 registerBtn.addEventListener("click", register);
@@ -25,23 +25,23 @@ const password_two = document.querySelector("#reg-password-two");
 
 function addClick(doms, type) {
   //只要点击，就执行removeErrorTag()
-  doms.forEach(dom => {
-    dom.addEventListener(type || "click", () => {
-      removeErrorTag(dom); //css效果:移除红框
+  doms.forEach(onedom => {
+    onedom.addEventListener(type || "click", () => {
+      removeErrorTag(onedom); //css效果:移除红框
     });
   });
 }
 
 function addErrorTag(dom) {
   //给传入的DOM节点增加css类
-  dom.classList.remove(ERROR); //习惯，不管有没有都先移除一下
-  dom.classList.add(ERROR); //给节点添加ERROR的class//css效果:显示红框
+  dom.classList.remove(ERROR); //习惯,不管有没有都先移除一下
+  dom.classList.add(ERROR); //给DOM节点添加ERROR的class //css效果:显示红框
 }
 function removeErrorTag(dom) {
   //给DOM节点删除css类
   dom.classList.remove(ERROR); //css效果:移除红框
 }
-
+//定义4种动画效果
 function correctShow() {
   const tween = gsap.timeline();
   tween.to("body", { duration: 0, background: "fff" });
@@ -93,7 +93,8 @@ function BtnErrorShow() {
     background: "#fff",
   });
 }
-addClick([new_username, password_one, password_two]);
+
+addClick([new_username, password_one, password_two]); //点击 移除css红框
 
 async function register(event) {
   event.preventDefault();
@@ -102,9 +103,9 @@ async function register(event) {
     BtnErrorShow();
     return;
   } //看这三个DOM节点是否为空, 有空值就return,不继续执行AXIOS
-  if (password_one.value === password_two.value) {
+  if (password_one.value === password_two.value) { //密码输入符合条件
     //在前端直接比较<input>标签的value
-    const address = "http://localhost:7890/api/register"; //去找后端的路由
+    const address = "http://localhost:7890/api/register"; //后端的路由
     // const method = fetchMethod.FETCH //切换方法1.Fetch
     const method = fetchMethod.AXIOS; //切换方法2.AXIOS
     const response = await postPassword(
@@ -113,16 +114,16 @@ async function register(event) {
       address,
       new_username.value,
       password_one.value
-    ); //函数(用什么方法，后端路由，两个input.value)
+    ); //postPassword函数(用什么方法，后端路由，两个input.value)
     console.log(response); //打印postPassword方法的返回值
     switch (
-      Number(response.code) //切换后端res返回的code代号(转换数据类型Number或者toString)
+      Number(response.code) //切换后端返回的code代号(转换数据类型Number或者toString)
     ) {
       case 0: //成功
         correctShow();
         // showRegister();
         break;
-      case 1: //错误1:存在用户名
+      case 1: //错误1:用户名已存在
         userNameErrorShow();
         addErrorTag(new_username); //对new_username这个Dom节点执行addErrorTag()
         break;
@@ -168,11 +169,11 @@ async function postPassword(method, address, username, password) {
     //方法2:
     case fetchMethod.AXIOS:
       return axios
-        .post("http://localhost:7890/api/register", {
+        .post("http://localhost:7890/api/register", { //将数据发给后端路由
           username,
           password,
         })
-        .then(res => res.data) //异步等来自后端的回应
+        .then(res => res.data) //异步等来自后端的回应,然后return
         .catch(err => {
           console.error(err);
         });
@@ -203,7 +204,6 @@ async function login(e) {
   e.preventDefault();
   if (inputEmpty([username, password])) {
     //缺少输入
-
     BtnErrorShow();
     return;
   }
@@ -212,10 +212,10 @@ async function login(e) {
       username: username.value,
       password: password.value, //将前端的<input>的value传给后端
     })
-    .then(res => res.data) //将后端返回的res.data赋值给response
+    .then(res => res.data) //异步等后端返回的res.data,再赋值给response
     .catch(err => console.errors(err));
   console.log(response);
-  switch (Number(response.code)) {
+  switch (Number(response.code)) { //切换后端返回的code码
     case 0:
       correctShow();
       showWelcome(); //跳转welcome

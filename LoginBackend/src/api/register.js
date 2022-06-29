@@ -13,7 +13,7 @@ async function register(req, res) {
         let status = false //开始找前,状态设为false
         Users.some(DB_User => {
             if (DB_User.name && DB_User.name === req.body.username){ //如果数据库存的DB_User.name = 前端传来的username
-                res.status(200).send({'msg':'Already have the username', "code":"1", "Existing_username is:":req.body.username}) //返回给前端的状态码+信息
+                res.status(200).send({'msg':'Already have the username', "code":"1", "Existing_username is:":req.body.username}) //返回给前端的状态码+信息 //用户名存在
                 status = true //找到了，状态设为true
                 return true //跳出some循环
             } //some+true固定组合
