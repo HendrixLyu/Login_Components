@@ -44,7 +44,7 @@ function showRegister() {
 }
 
 function showWelcome() {
-  console.log('showWelcome');
+  console.log("showWelcome");
   const tween = gsap.timeline({ delay: 0.5 })
   loginAnimation.comeOut(tween)
   WelcomeAnimation.comeIn(tween)

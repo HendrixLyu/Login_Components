@@ -9,13 +9,13 @@ async function register(req, res) {
     .then(res => res.data) //将数据库user存的data返回给后端
     .catch(err => console.error(err))
     console.log(Users); //数据库的取到的数据,在后端打印
-    if (Users && Users.length) { //如果有数据
+    if (Users && Users.length) { //如果数据库有数据
         let status = false //开始找前,状态设为false
-        Users.some(Users => {
-            if (Users.name && Users.name === req.body.username){ //如果数据库存的username=前端传来的username
-                res.status(200).send({'msg':'Already have the username', "code":"1", "Existing_username is:":req.body.username}) //返回给前端的状态码+信息(res)
+        Users.some(DB_User => {
+            if (DB_User.name && DB_User.name === req.body.username){ //如果数据库存的DB_User.name = 前端传来的username
+                res.status(200).send({'msg':'Already have the username', "code":"1", "Existing_username is:":req.body.username}) //返回给前端的状态码+信息
                 status = true //找到了，状态设为true
-                return true
+                return true //跳出some循环
             } //some+true固定组合
         });
         if (status) { //状态为true
@@ -24,7 +24,7 @@ async function register(req, res) {
     }
 
     if(!req.body.password){ //if前端没传来密码
-        res.status(200).send({ //返回给前端的信息
+        res.status(200).send({ //返回给前端的信息+状态码
             "msg":"missing password ?????",
             "code":'2', //没输入密码
             "password":req.body.password,
