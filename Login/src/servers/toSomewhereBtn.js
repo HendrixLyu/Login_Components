@@ -6,8 +6,8 @@ class ToSomewhere {
   static toLoginBtn = new BtnResponse('.to-login-btn')
 
   static init() {
-    ToSomewhere._addClick(ToSomewhere.toRegisterBtn, 'click', 1, 0.5, showRegister) //点击之后1s触发
-    ToSomewhere._addClick(ToSomewhere.toLoginBtn, 'click', 0, 0.5, showLogin)
+    ToSomewhere._addClick(ToSomewhere.toRegisterBtn, 'click', 0.5, 0.5, showRegister) //点击之后1s触发
+    ToSomewhere._addClick(ToSomewhere.toLoginBtn, 'click', 0.5, 0.5, showLogin)
   }
 
   static _addClick(btnResponse, type, delay, afterDelay, callback) {

@@ -6,24 +6,9 @@
       "id": 1
     },
     {
-      "name": "2",
-      "Password": "$2b$07$4M88op61kEnn58X6EyhKe.J9hmd4w043Tymxw8tyQaMlXHLIz0d8K",
+      "name": "abc",
+      "Password": "$2b$07$26BU06nLjz1iSYfVmpT6AOFyUwe6PM0O3SPK0kL9oIHG9VwAt8Iu.",
       "id": 2
-    },
-    {
-      "name": "11",
-      "Password": "$2b$07$V3q5pmTMs2A5QVHmjhQlqOPgfU0GZ83Ojna/tIWR8TlOvxvJ0oWfe",
-      "id": 3
-    },
-    {
-      "name": "22",
-      "Password": "$2b$07$BO5hN3CgF4/sToG.pWk3GOExDhwP53oKKAL8cAv0g0xaHA1e0W4ai",
-      "id": 4
-    },
-    {
-      "name": "3",
-      "Password": "$2b$07$mxa3tz.28KqjHHHg/YWhM.8l9Ep95700JZndNpJnZFLR0vNq0kBXW",
-      "id": 5
     }
   ],
   "bcrypt": [
