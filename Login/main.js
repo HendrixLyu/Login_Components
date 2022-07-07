@@ -103,9 +103,8 @@ async function register(event) {
     BtnErrorShow();
     return;
   } //看这三个DOM节点是否为空, 有空值就return,不继续执行AXIOS
-  if (password_one.value === password_two.value) {
-    //密码输入符合条件
-    //在前端直接比较<input>标签的value
+  if (password_one.value === password_two.value) { //密码输入符合条件
+   //在前端直接比较密码<input>标签的value
     const address = "http://localhost:7890/api/register"; //后端的路由
     // const method = fetchMethod.FETCH //切换方法1.Fetch
     const method = fetchMethod.AXIOS; //切换方法2.AXIOS
