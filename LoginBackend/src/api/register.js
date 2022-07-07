@@ -3,7 +3,7 @@ import "dotenv/config"
 import bcrypt from "bcrypt" //加密算法
 
 async function register(req, res) {
-    console.log(req.body); //打印接收到的前端post的数据
+    console.log(req.body); //接收到的前端post的数据
     // res.status(200).json({'myMsg':'Success!!!'}) //返回给前端的响应 
     const Users = await axios.get(process.env.JSON_SERVER_PATH + '/user') //去数据库拿取user存的数据
     .then(res => res.data) //将数据库user存的data返回给后端
