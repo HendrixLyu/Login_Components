@@ -99,7 +99,6 @@ addClick([new_username, password_one, password_two]); //点击 移除css红框
 async function register(event) {
   event.preventDefault();
   if (inputEmpty([new_username, password_one, password_two])) {
-    // userNameErrorShow();
     BtnErrorShow();
     return;
   } //看这三个DOM节点是否为空, 有空值就return,不继续执行AXIOS
@@ -208,18 +207,18 @@ async function login(e) {
     BtnErrorShow();
     return;
   }
-  const response = await axios
-    .post("http://localhost:7890/api/user", {
+  const response666 = await axios
+    .post("http://localhost:7890/api/user", { //后端服务器端口为:http://localhost:7890
       username: username.value,
-      password: password.value, //将前端的<input>的value传给后端
-    })
-    .then(res => res.data) //异步等后端返回的res.data,再赋值给response
+      password: password.value, 
+    }) //将前端的<input>的value传给后端
+    .then(res => res.data) //异步等后端返回的res.data,再赋值给变量response666
     .catch(err => console.errors(err));
-  console.log(response);
+  console.log(response666);
   switch (
-    Number(response.code) //切换后端返回的code码
+    Number(response666.code) //切换后端返回的code码
   ) {
-    case 0:
+    case 0: //成功
       correctShow();
       showWelcome(); //跳转welcome
       break;
