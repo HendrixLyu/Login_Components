@@ -31,7 +31,7 @@ async function user(req, res) {
       //拿着数据库存这条username的密码
       const match = await bcrypt.compare(password, getPassword); //拿着前端传入的password加盐，与数据库存的Password比较，只返回T/F
       if (match) {
-        //返回T
+        //返回True
         res
           .status(200)
           .send({ info: " user and password match successful", code: "0" });
